@@ -1,0 +1,12 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/project
+    steps:
+      - checkout
+      - run:
+          name: build images
+          command: |
+            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+            docker build -t hyperfiddle/imagemagick:$CIRCLE_SHA1 ./imagemagick
+            docker push hyperfiddle/imagemagick:$CIRCLE_SHA1
