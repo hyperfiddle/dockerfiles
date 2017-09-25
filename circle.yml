@@ -6,20 +6,19 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: |
-          docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-          docker build -t hyperfiddle/imagemagick:$CIRCLE_SHA1 ./imagemagick -t hyperfiddle/imagemagick:latest
-          docker push hyperfiddle/imagemagick
+      - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t hyperfiddle/imagemagick:$CIRCLE_SHA1 ./imagemagick -t hyperfiddle/imagemagick:latest
+      - run: docker push hyperfiddle/imagemagick
+
   puppeteer:
       docker:
         - image: docker:17.05.0-ce-git
       steps:
         - checkout
         - setup_remote_docker
-        - run: |
-            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            docker build -t hyperfiddle/puppeteer:$CIRCLE_SHA1 ./puppeteer -t hyperfiddle/puppeteer:latest
-            docker push hyperfiddle/puppeteer
+        - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+        - run: docker build -t hyperfiddle/puppeteer:$CIRCLE_SHA1 ./puppeteer -t hyperfiddle/puppeteer:latest
+        - run: docker push hyperfiddle/puppeteer
 
 workflows:
   version: 2
