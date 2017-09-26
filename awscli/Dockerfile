@@ -1,6 +1,6 @@
-FROM alpine:3.6
+FROM docker:17.07.0-ce
 
-RUN apk update && apk add \
+RUN apk update && apk add --no-cache \
       bash \
       curl \
       less \
