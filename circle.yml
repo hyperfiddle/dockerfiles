@@ -10,6 +10,16 @@ jobs:
         - run: docker build -t hyperfiddle/awscli:$CIRCLE_SHA1 ./awscli -t hyperfiddle/awscli:latest
         - run: docker push hyperfiddle/awscli
 
+  diff:
+      docker:
+        - image: docker:17.05.0-ce-git
+      steps:
+        - checkout
+        - setup_remote_docker
+        - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+        - run: docker build -t hyperfiddle/integration-diff:$CIRCLE_SHA1 ./integration-test/diff -t hyperfiddle/integration-diff:latest
+        - run: docker push hyperfiddle/integration-diff
+
   imagemagick:
     docker:
       - image: docker:17.05.0-ce-git
@@ -37,3 +47,7 @@ workflows:
       - awscli
       - imagemagick
       - puppeteer
+      - diff:
+          requires:
+            - imagemagick
+
