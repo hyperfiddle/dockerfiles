@@ -10,6 +10,16 @@ jobs:
         - run: docker build -t hyperfiddle/awscli:$CIRCLE_SHA1 ./awscli -t hyperfiddle/awscli:latest
         - run: docker push hyperfiddle/awscli
 
+  boot-node:
+      docker:
+        - image: docker:17.05.0-ce-git
+      steps:
+        - checkout
+        - setup_remote_docker
+        - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+        - run: docker build -t hyperfiddle/boot-node:$CIRCLE_SHA1 ./boot-node -t hyperfiddle/boot-node:latest
+        - run: docker push hyperfiddle/boot-node
+
   diff:
       docker:
         - image: docker:17.05.0-ce-git
@@ -45,6 +55,7 @@ workflows:
   build_and_deploy:
     jobs:
       - awscli
+      - boot-node
       - imagemagick
       - puppeteer
       - diff:
