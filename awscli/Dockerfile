@@ -1,4 +1,4 @@
-FROM docker:17.07.0-ce
+FROM docker:18.06.1-ce
 
 RUN apk add --no-cache \
       bash \

@@ -2,7 +2,7 @@ version: 2
 jobs:
   awscli:
       docker:
-        - image: docker:17.05.0-ce-git
+        - image: docker:18.06.1-ce-git
       steps:
         - checkout
         - setup_remote_docker
@@ -12,7 +12,7 @@ jobs:
 
   boot-node:
       docker:
-        - image: docker:17.05.0-ce-git
+        - image: docker:18.06.1-ce-git
       steps:
         - checkout
         - setup_remote_docker
@@ -22,7 +22,7 @@ jobs:
 
   diff:
       docker:
-        - image: docker:17.05.0-ce-git
+        - image: docker:18.06.1-ce-git
       steps:
         - checkout
         - setup_remote_docker
@@ -32,7 +32,7 @@ jobs:
 
   imagemagick:
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:18.06.1-ce-git
     steps:
       - checkout
       - setup_remote_docker
@@ -42,7 +42,7 @@ jobs:
 
   puppeteer:
       docker:
-        - image: docker:17.05.0-ce-git
+        - image: docker:18.06.1-ce-git
       steps:
         - checkout
         - setup_remote_docker
