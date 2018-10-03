@@ -1,4 +1,4 @@
-FROM clojure:boot-2.7.2
+FROM clojure:boot-2.8.1
 
 RUN apt-get -y update
 
